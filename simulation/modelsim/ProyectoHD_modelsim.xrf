@@ -1,0 +1,14 @@
+vendor_name = ModelSim
+source_file = 1, C:/Users/migue/Documents/GitHub/ProyectoDDM/dec_tec1.vhd
+source_file = 1, C:/Users/migue/Documents/GitHub/ProyectoDDM/ProyectoHD.bdf
+source_file = 1, C:/Users/migue/Documents/GitHub/ProyectoDDM/db/ProyectoHD.cbx.xml
+source_file = 1, d:/programas/quartuswe/quartus/libraries/vhdl/ieee/prmtvs_b.vhd
+source_file = 1, d:/programas/quartuswe/quartus/libraries/vhdl/ieee/prmtvs_p.vhd
+source_file = 1, d:/programas/quartuswe/quartus/libraries/vhdl/ieee/timing_b.vhd
+source_file = 1, d:/programas/quartuswe/quartus/libraries/vhdl/ieee/timing_p.vhd
+design_name = ProyectoHD
+instance = comp, \pin_name4~output\, pin_name4~output, ProyectoHD, 1
+instance = comp, \pin_name1~input\, pin_name1~input, ProyectoHD, 1
+instance = comp, \pin_name2~input\, pin_name2~input, ProyectoHD, 1
+instance = comp, \pin_name3~input\, pin_name3~input, ProyectoHD, 1
+instance = comp, \inst~0\, inst~0, ProyectoHD, 1
