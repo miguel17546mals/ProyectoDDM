@@ -1,6 +1,7 @@
 vendor_name = ModelSim
 source_file = 1, C:/Users/migue/Documents/GitHub/ProyectoDDM/dec_tec1.vhd
 source_file = 1, C:/Users/migue/Documents/GitHub/ProyectoDDM/ProyectoHD.bdf
+source_file = 1, C:/Users/migue/Documents/GitHub/ProyectoDDM/Central.vhd
 source_file = 1, C:/Users/migue/Documents/GitHub/ProyectoDDM/db/ProyectoHD.cbx.xml
 source_file = 1, d:/programas/quartuswe/quartus/libraries/vhdl/ieee/prmtvs_b.vhd
 source_file = 1, d:/programas/quartuswe/quartus/libraries/vhdl/ieee/prmtvs_p.vhd

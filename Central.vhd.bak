@@ -1,0 +1,13 @@
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+entity dec_tec1 is
+    Port ( KeyPad : in std_logic_vector(3 downto 0);
+           ck 	  : in std_logic;
+			  filas : out std_logic_vector(3 downto 0);
+           dato  : out std_logic_vector(3 downto 0);
+           pulso : out std_logic);
+end dec_tec1;

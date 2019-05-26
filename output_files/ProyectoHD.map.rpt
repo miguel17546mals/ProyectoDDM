@@ -1,5 +1,5 @@
 Analysis & Synthesis report for ProyectoHD
-Sun May 26 02:13:51 2019
+Sun May 26 03:40:00 2019
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -41,7 +41,7 @@ applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Sun May 26 02:13:51 2019           ;
+; Analysis & Synthesis Status        ; Successful - Sun May 26 03:40:00 2019           ;
 ; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name                      ; ProyectoHD                                      ;
 ; Top-level Entity Name              ; ProyectoHD                                      ;
@@ -222,7 +222,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Sun May 26 02:13:47 2019
+    Info: Processing started: Sun May 26 03:39:59 2019
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off ProyectoHD -c ProyectoHD
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 2 design units, including 1 entities, in source file dec_tec1.vhd
@@ -230,6 +230,9 @@ Info (12021): Found 2 design units, including 1 entities, in source file dec_tec
     Info (12023): Found entity 1: dec_tec1
 Info (12021): Found 1 design units, including 1 entities, in source file proyectohd.bdf
     Info (12023): Found entity 1: ProyectoHD
+Info (12021): Found 2 design units, including 1 entities, in source file central.vhd
+    Info (12022): Found design unit 1: central-Behavioral
+    Info (12023): Found entity 1: central
 Info (12127): Elaborating entity "ProyectoHD" for the top level hierarchy
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
@@ -239,9 +242,9 @@ Info (21057): Implemented 5 device resources after synthesis - the final resourc
     Info (21059): Implemented 1 output pins
     Info (21061): Implemented 1 logic cells
 Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 1 warning
-    Info: Peak virtual memory: 4720 megabytes
-    Info: Processing ended: Sun May 26 02:13:51 2019
-    Info: Elapsed time: 00:00:04
+    Info: Peak virtual memory: 4711 megabytes
+    Info: Processing ended: Sun May 26 03:40:00 2019
+    Info: Elapsed time: 00:00:01
     Info: Total CPU time (on all processors): 00:00:02
 
 
