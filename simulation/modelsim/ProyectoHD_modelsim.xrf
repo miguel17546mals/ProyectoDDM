@@ -1,4 +1,5 @@
 vendor_name = ModelSim
+source_file = 1, C:/Users/migue/Documents/GitHub/ProyectoDDM/BCD_7Seg.vhd
 source_file = 1, C:/Users/migue/Documents/GitHub/ProyectoDDM/dec_tec1.vhd
 source_file = 1, C:/Users/migue/Documents/GitHub/ProyectoDDM/ProyectoHD.bdf
 source_file = 1, C:/Users/migue/Documents/GitHub/ProyectoDDM/Central.vhd
