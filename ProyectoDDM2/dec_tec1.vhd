@@ -1,0 +1,129 @@
+--
+--------   -----------------
+--fila 0   | 1 | 2 | 3 | A |
+--------   -----------------
+--fila 1   | 4 | 5 | 6 | B |
+--------   -----------------
+--fila 2   | 7 | 8 | 9 | C |
+--------   -----------------
+--fila 3   | * | 0 | # | D |
+--------   -----------------
+--Columnas   3   2   1   0
+--De esta forma si presiono la tecla B, se producira un corto entre la
+--fila 2 y la columna 0 en el teclado. 
+
+--Caracteristicas especiales: el decodificador necesita de por lo menos 4 pulsos de 
+--reloj, un ciclo completo, para detectar que dejaron de presionar la tecla
+
+--DESCRIPCION DE LOS PUERTOS:
+--columnas:entrada de las columnas del teclado matricial
+--filas:salida que se conecta a las filas del teclado matricial
+--ck: oscilador para hacer la decodificacion, su frecuancia puede ser 1000 Hz
+--dato: salida binaria que indica el c�digo de la tecla que presion�.
+--pulso: indica cuando el usuario tiene una tecla presionada.
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+
+entity dec_tec1 is
+    Port ( columnas : in std_logic_vector(3 downto 0);
+           ck 	  : in std_logic;
+			  filas : out std_logic_vector(3 downto 0);
+           dato  : out std_logic_vector(3 downto 0);
+           pulso : out std_logic);
+end dec_tec1;
+
+architecture Behavioral of dec_tec1 is
+
+--declaraci�pn de se�ales temporales
+--cont: se utiliza para generar la secuencia 1, 2, 4, 8.
+--dec_filas: decodificador de 2x4.
+--dec_dato: circuito combinacional que muestra la tecla presionada
+--c3, c2, c1, c0: flip flops que indican si una columna cn fue presionada
+--pulsoT: se�al temporal para el pulso de salida.
+
+signal cont: std_logic_vector(1 downto 0); 
+signal dec_filas: std_logic_vector(3 downto 0);
+signal dec_dato: std_logic_vector(3 downto 0);
+signal c3, c2, c1, c0: std_logic;
+signal pulsoT: std_logic;
+
+begin
+--Proceso para el contador cont.
+Process(ck)
+begin
+	if (ck'event and ck='1') then
+		cont<=cont+1;
+	end if;
+end process;
+
+
+--procesop para generar el pulso que indica que se presiona una tecla
+Process(ck)
+begin
+	if (ck'event and ck='1') then
+		if (columnas="1000") then
+			c3<='1';
+			pulsoT <= '1';
+		elsif(columnas="0100") then
+			c2<='1';
+			pulsoT <= '1';
+		elsif(columnas="0010") then
+			c1<='1';
+			pulsoT <= '1';
+		elsif (columnas="0001") then
+			c0<='1';
+			pulsoT <= '1';
+		elsif(cont = "11" and(c3='1' or c2='1' or c1='1' or c0='1'))then
+			c0<='0'; c1<='0'; c2<='0'; c3<='0';
+		elsif(cont = "11" and c3='0' and c2='0' and c1='0' and c0='0')then
+			pulsoT <= '0';
+		end if;
+
+	end if;
+end process;
+
+--proceso para mostrar el dato por el puerto
+process(ck)
+begin
+	if(ck'event and ck='0')then
+		if (columnas/="0000" and(c0='1' or c1='1' or c2='1' or c3='1')) then
+			dato<=dec_dato;
+		end if;
+	end if;
+end process;
+
+--genera una secuencia de salida para las filas, utilizando el contador cont
+dec_filas <= "0001" when cont="00" else
+             "0010" when cont="01" else
+		   "0100" when cont="10" else
+		   "1000" when cont="11" else
+		   "0000";
+filas<= dec_filas;
+
+--decodifica la tecla que estan presionando
+--depende del dato que sale por filas y la entrada columnas
+dec_dato <= "0001" when dec_filas="0001" and columnas="1000" else --1
+         "0010" when dec_filas="0001" and columnas="0100" else 	--2
+         "0011" when dec_filas="0001" and columnas="0010" else		--3
+         "1010" when dec_filas="0001" and columnas="0001" else		--A
+         "0100" when dec_filas="0010" and columnas="1000" else		--4
+         "0101" when dec_filas="0010" and columnas="0100" else		--5
+         "0110" when dec_filas="0010" and columnas="0010" else		--6
+         "1011" when dec_filas="0010" and columnas="0001" else		--B
+         "0111" when dec_filas="0100" and columnas="1000" else		--7
+         "1000" when dec_filas="0100" and columnas="0100" else		--8
+         "1001" when dec_filas="0100" and columnas="0010" else		--9
+         "1100" when dec_filas="0100" and columnas="0001" else		--C
+         "1111" when dec_filas="1000" and columnas="1000" else		--* -- F en Hex
+         "0000" when dec_filas="1000" and columnas="0100" else		--0
+         "1110" when dec_filas="1000" and columnas="0010" else		--# -- E en Hex
+         "1101" when dec_filas="1000" and columnas="0001" else		--D
+	    "0000";
+
+pulso <= pulsoT;
+
+end Behavioral;
