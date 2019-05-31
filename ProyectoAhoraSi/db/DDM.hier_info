@@ -1,0 +1,76 @@
+|DDM
+pulso <= dec_tec1:inst2.pulso
+clk => divisor:inst.clk50mhz
+columnas[0] => dec_tec1:inst2.columnas[0]
+columnas[1] => dec_tec1:inst2.columnas[1]
+columnas[2] => dec_tec1:inst2.columnas[2]
+columnas[3] => dec_tec1:inst2.columnas[3]
+dato[0] <= dec_tec1:inst2.dato[0]
+dato[1] <= dec_tec1:inst2.dato[1]
+dato[2] <= dec_tec1:inst2.dato[2]
+dato[3] <= dec_tec1:inst2.dato[3]
+filas[0] <= dec_tec1:inst2.filas[0]
+filas[1] <= dec_tec1:inst2.filas[1]
+filas[2] <= dec_tec1:inst2.filas[2]
+filas[3] <= dec_tec1:inst2.filas[3]
+
+
+|DDM|dec_tec1:inst2
+columnas[0] => Equal5.IN7
+columnas[0] => Equal6.IN7
+columnas[0] => Equal7.IN7
+columnas[0] => Equal8.IN7
+columnas[1] => Equal5.IN6
+columnas[1] => Equal6.IN6
+columnas[1] => Equal7.IN6
+columnas[1] => Equal8.IN6
+columnas[2] => Equal5.IN5
+columnas[2] => Equal6.IN5
+columnas[2] => Equal7.IN5
+columnas[2] => Equal8.IN5
+columnas[3] => Equal5.IN4
+columnas[3] => Equal6.IN4
+columnas[3] => Equal7.IN4
+columnas[3] => Equal8.IN4
+clk => cont[0].CLK
+clk => cont[1].CLK
+clk => dec_filas[0].CLK
+clk => dec_filas[1].CLK
+clk => dec_filas[2].CLK
+clk => dec_filas[3].CLK
+clk => filas[0]~reg0.CLK
+clk => filas[1]~reg0.CLK
+clk => filas[2]~reg0.CLK
+clk => filas[3]~reg0.CLK
+filas[0] <= filas[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+filas[1] <= filas[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+filas[2] <= filas[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+filas[3] <= filas[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+dato[0] <= dato.DB_MAX_OUTPUT_PORT_TYPE
+dato[1] <= dato.DB_MAX_OUTPUT_PORT_TYPE
+dato[2] <= dato.DB_MAX_OUTPUT_PORT_TYPE
+dato[3] <= dato.DB_MAX_OUTPUT_PORT_TYPE
+pulso <= process_2.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|DDM|divisor:inst
+clk50mhz => clk_state.CLK
+clk50mhz => count[0].CLK
+clk50mhz => count[1].CLK
+clk50mhz => count[2].CLK
+clk50mhz => count[3].CLK
+clk50mhz => count[4].CLK
+clk50mhz => count[5].CLK
+clk50mhz => count[6].CLK
+clk50mhz => count[7].CLK
+clk50mhz => count[8].CLK
+clk50mhz => count[9].CLK
+clk50mhz => count[10].CLK
+clk50mhz => count[11].CLK
+clk50mhz => count[12].CLK
+clk50mhz => count[13].CLK
+clk50mhz => count[14].CLK
+clk50mhz => count[15].CLK
+clk <= clk_state.DB_MAX_OUTPUT_PORT_TYPE
+
+
