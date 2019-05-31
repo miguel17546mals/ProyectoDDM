@@ -1,0 +1,109 @@
+library ieee;
+use ieee.std_logic_1164.all;
+entity Teclado is
+port (
+fila	: in std_logic_vector(3 downto 0); --fila 
+clk, reset : in std_logic := '1';
+bin	: out std_logiv_vector (3 downto 0);
+data	: out std_logic := '0';
+columna : out std_logic_vector (3 downto 0);
+); 
+end Teclado;
+
+architecture behavior of Teclado is 
+type estado is (s0,s1,s2,s3);
+signal pr_state,nx_state : estado;
+
+begin
+
+process (reset,clk)
+begin
+ if reset = '0' then
+    pr_state <= s0;
+ elsif rising_edge(clk) then
+    pr_state <= nx_state;
+ end if;
+end process;
+
+process (entrada,pr_state)
+begin
+case pr_state is 
+  when s0 => columna <= "0111";
+   case entrada is 
+   when "0111" =>
+    nx_state <= s0;
+    bin <= "0001"; --1
+    data <= '1';
+   when "1011" =>
+    nx_state <=s0;
+    bin <= "0100"; -- 4
+    data <= '1';
+   when "1101" =>
+    nx_state <=s0;
+    bin <= "0111"; --7
+    data <= '1';
+   when "1110" =>
+    nx_state <=s1;
+    bin <= "1111"; -- *
+    data <= '1';
+   end case;
+ when s0 => columna <= "1011";
+   case entrada is 
+   when "0111" =>
+    nx_state <= s1;
+    bin <= "0010"; --2
+    data <= '1';
+   when "1011" =>
+    nx_state <=s1;
+    bin <= "0101"; -- 5
+    data <= '1';
+   when "1101" =>
+    nx_state <=s1;
+    bin <= "1000"; --8
+    data <= '1';
+   when "1110" =>
+    nx_state <=s2;
+    bin <= "0000"; -- 0
+    data <= '1';
+   end case;
+ when s0 => columna <= "1101";
+   case entrada is 
+   when "0111" =>
+    nx_state <= s2;
+    bin <= "0011"; --3
+    data <= '1';
+   when "1011" =>
+    nx_state <=s2;
+    bin <= "0110"; -- 6
+    data <= '1';
+   when "1101" =>
+    nx_state <=s2;
+    bin <= "1001"; --9
+    data <= '1';
+   when "1110" =>
+    nx_state <=s3;
+    bin <= "1110"; -- #
+    data <= '1';
+   end case;
+ when s0 => columna <= "1110";
+   case entrada is 
+   when "0111" =>
+    nx_state <= s3;
+    bin <= "1010"; --A
+    data <= '1';
+   when "1011" =>
+    nx_state <=s3;
+    bin <= "1011"; -- B
+    data <= '1';
+   when "1101" =>
+    nx_state <=s3;
+    bin <= "1100"; --C
+    data <= '1';
+   when "1110" =>
+    nx_state <=s0;
+    bin <= "1101"; -- D
+    data <= '1';
+   end case;
+end process;
+
+end;
