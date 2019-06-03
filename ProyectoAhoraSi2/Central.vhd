@@ -12,27 +12,30 @@ entity central is
 			  Magna   : in std_logic;
 			  Premium : in std_logic;
 			  --Salidas
-		   debug		: out std_logic_vector (3 downto 0);
+			  debug			: out std_logic_vector (3 downto 0);
            bombaMagna   : out std_logic;
            bombaPremium : out std_logic);
 end central;
 
 architecture Behavioral of central is
 --Declaracion de las variables que manejaremos en el proceso
-signal litros : integer range 0 to 999;
-signal precio : integer; 
-signal contador :  integer range 0 to 999;
-signal i : integer range 0 to 999;
+signal litros : integer range 0 to 999 := 0;
+signal precio : integer range 0 to 999:= 0; 
+signal contador :  integer range 0 to 999:= 0;
+signal i : integer range 0 to 50000000;
 signal t : integer ;
 signal clk_state : std_logic;
+signal cont : integer range 0 to 99;
+
 --signal contador : integer;
-TYPE estados is (S0,S1,S2,S3,S4,S5,S6,S7,S8,S9);
+TYPE estados is (S0,S1,S3,S4,S5,S6,S7,S8,S9);
 Signal estado_pr,estado_sig : estados;
 
 begin
- litros <= 0;
- precio <= 0;
- contador <= 0;
+ --litros <= 0;
+ --precio <= 0;
+ --contador <= 0;
+ --cont <= 0;
  --Inicializacion de los estados
  process (clk,KeyPad) begin 
 	if (KeyPad = "1101") then 
@@ -58,37 +61,23 @@ begin
 			else 
 				estado_sig <= S0;
 			end if;
+		
 		when S1 =>
 			debug <= "0010";
 			bombaMagna <= '0';
 			bombaPremium <= '0';
 			
 			if KeyPad = "1100" then
+				debug <= "1100";
 				estado_sig <= S1;
 			elsif (KeyPad = "0000" or KeyPad = "0001" or KeyPad = "0010" or KeyPad = "0011" or KeyPad = "0100" -- N
 			or KeyPad = "0101" or KeyPad = "0110" or KeyPad = "0111" or KeyPad = "1000" or KeyPad = "1001") then
 				contador <= contador*10 + CONV_INTEGER(KeyPad);
-				estado_sig <= S2;
+				estado_sig <= S3;
 			else 
 				estado_sig <= S0;
 			end if;
-		when S2 =>
-			debug <= "0011";
-			bombaMagna <= '0';
-			bombaPremium <= '0';
-			if (KeyPad = "0000" or KeyPad = "0001" or KeyPad = "0010" or KeyPad = "0011" or KeyPad = "0100" -- N
-			or KeyPad = "0101" or KeyPad = "0110" or KeyPad = "0111" or KeyPad = "1000" or KeyPad = "1001") then
-				contador <= contador*10 + CONV_INTEGER(KeyPad);
-				estado_sig <= S3;
-			elsif KeyPad = "1111" then -- *
-				estado_sig <= S4;
-			elsif KeyPad = "1110" then -- #
-				estado_sig <= S5;
-			elsif KeyPad = "1010" or KeyPad = "1011" or KeyPad = "1100" then
-				estado_sig <= S2;
-			else 
-				estado_sig <= S0;
-			end if;	
+
 		when S3 =>
 			debug <= "0100";
 			bombaMagna <= '0';
@@ -128,6 +117,9 @@ begin
 			--Activa la Bomba
 			if Magna = '1' then	
 				bombaMagna <= '1';
+				if cont = 0 then 
+					bombaMagna<= '0';
+				end if;
 			end if;
 		-- caso Premium Pesos
 		when S7 =>
@@ -142,6 +134,9 @@ begin
 			--Activa la Bomba
 			if Premium = '1' then
 				bombaPremium <= '1';
+				if cont = 0 then 
+					bombaPremium<= '0';
+				end if;
 			end if;
 		-- Caso Magna Litros
 		when S5 =>
@@ -170,7 +165,10 @@ begin
 			--Activa la Bomba
 			if Magna = '1' then
 				bombaMagna<= '1';
-			end if;	
+				if cont = 0 then 
+					bombaMagna<= '0';
+				end if;
+			end if;
 		-- Caso Premium Litros
 		when S9 =>
 			debug <= "1010";
@@ -184,26 +182,33 @@ begin
 			--Activa la Bomba
 			if Premium = '1' then
 				bombaPremium<= '1';
-			end if;		
+				if cont = 0 then 
+					bombaPremium<= '0';
+				end if;
+			end if;	
 	end case;
  end process;
- -- divisor a 1 micro HZ
+
 divisor1hz: process(clk,i,magna,premium) begin
-	if clk'event and clk='1' then
-				if i < 1000000 then 
-					i <= i+1;
-				elsif magna = '1' or premium= '1' then
-					i<= 0;
-				elsif i = litros then
-					i <= 0;
-					bombaMagna <= '0';
-					bombaPremium <= '0';
-				else
-					clk_state <= not clk_state;
-					i <= 0;
-				end if;
-	end if;
+		if clk'event and clk='1' then
+			if i < 50000000  then 
+				i <= i+1;
+			else
+				clk_state <= not clk_state;
+				i <= 0;
+			end if;
+		end if;
 end process;
  
+contadorT: process (clk_state,cont,litros) begin 
+		if rising_edge(clk_state)then
+			if cont < litros then 
+				cont <= cont + 1;
+			else 
+				cont <= 0;
+				--litros <= 0;
+			end if;	
+		end if;	
+end process ;
 
 end Behavioral;

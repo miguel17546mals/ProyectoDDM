@@ -1,6 +1,6 @@
 EDA Netlist Writer report for DDM
-Fri May 31 19:35:21 2019
-Quartus II Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition
+Sun Jun 02 19:33:23 2019
+Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
 ---------------------
@@ -17,7 +17,7 @@ Quartus II Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition
 ----------------
 ; Legal Notice ;
 ----------------
-Copyright (C) 1991-2010 Altera Corporation
+Copyright (C) 1991-2013 Altera Corporation
 Your use of Altera Corporation's design tools, logic functions 
 and other software and tools, and its AMPP partner logic 
 functions, and any output files from any of the foregoing 
@@ -36,10 +36,10 @@ applicable agreement for further details.
 +-------------------------------------------------------------------+
 ; EDA Netlist Writer Summary                                        ;
 +---------------------------+---------------------------------------+
-; EDA Netlist Writer Status ; Successful - Fri May 31 19:35:20 2019 ;
+; EDA Netlist Writer Status ; Successful - Sun Jun 02 19:33:23 2019 ;
 ; Revision Name             ; DDM                                   ;
 ; Top-level Entity Name     ; DDM                                   ;
-; Family                    ; MAX II                                ;
+; Family                    ; Cyclone II                            ;
 ; Simulation Files Creation ; Successful                            ;
 +---------------------------+---------------------------------------+
 
@@ -66,29 +66,31 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------------------------+-----------------+
 
 
-+----------------------------------------------------------------------------------+
-; Simulation Generated Files                                                       ;
-+----------------------------------------------------------------------------------+
-; Generated Files                                                                  ;
-+----------------------------------------------------------------------------------+
-; E:/Nueva carpeta (2)/ProyectoDDM/ProyectoAhoraSi/simulation/modelsim/DDM.vho     ;
-; E:/Nueva carpeta (2)/ProyectoDDM/ProyectoAhoraSi/simulation/modelsim/DDM_vhd.sdo ;
-+----------------------------------------------------------------------------------+
++---------------------------------------------------------------------------------------------------+
+; Simulation Generated Files                                                                        ;
++---------------------------------------------------------------------------------------------------+
+; Generated Files                                                                                   ;
++---------------------------------------------------------------------------------------------------+
+; C:/Users/migue/Documents/GitHub/ProyectoDDM/ProyectoAhoraSi2/simulation/modelsim/DDM.vho          ;
+; C:/Users/migue/Documents/GitHub/ProyectoDDM/ProyectoAhoraSi2/simulation/modelsim/DDM_fast.vho     ;
+; C:/Users/migue/Documents/GitHub/ProyectoDDM/ProyectoAhoraSi2/simulation/modelsim/DDM_vhd.sdo      ;
+; C:/Users/migue/Documents/GitHub/ProyectoDDM/ProyectoAhoraSi2/simulation/modelsim/DDM_vhd_fast.sdo ;
++---------------------------------------------------------------------------------------------------+
 
 
 +-----------------------------+
 ; EDA Netlist Writer Messages ;
 +-----------------------------+
 Info: *******************************************************************
-Info: Running Quartus II EDA Netlist Writer
-    Info: Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition
-    Info: Processing started: Fri May 31 19:35:17 2019
+Info: Running Quartus II 64-Bit EDA Netlist Writer
+    Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+    Info: Processing started: Sun Jun 02 19:33:23 2019
 Info: Command: quartus_eda --read_settings_files=off --write_settings_files=off DDM -c DDM
-Info: Generated files "DDM.vho" and "DDM_vhd.sdo" in directory "E:/Nueva carpeta (2)/ProyectoDDM/ProyectoAhoraSi/simulation/modelsim/" for EDA simulation tool
-Info: Quartus II EDA Netlist Writer was successful. 0 errors, 0 warnings
-    Info: Peak virtual memory: 153 megabytes
-    Info: Processing ended: Fri May 31 19:35:21 2019
-    Info: Elapsed time: 00:00:04
+Info (204026): Generated files "DDM.vho", "DDM_fast.vho", "DDM_vhd.sdo" and "DDM_vhd_fast.sdo" in directory "C:/Users/migue/Documents/GitHub/ProyectoDDM/ProyectoAhoraSi2/simulation/modelsim/" for EDA simulation tool
+Info: Quartus II 64-Bit EDA Netlist Writer was successful. 0 errors, 0 warnings
+    Info: Peak virtual memory: 4562 megabytes
+    Info: Processing ended: Sun Jun 02 19:33:23 2019
+    Info: Elapsed time: 00:00:00
     Info: Total CPU time (on all processors): 00:00:01
 
 
