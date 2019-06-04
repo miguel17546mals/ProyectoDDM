@@ -29,7 +29,7 @@ architecture behavior of Teclado4bits is
 type estado is (s0,s1,s2,s3);
 signal contador : integer; 
 signal pr_state,nx_state : estado;
-signal key : std_logic_vector (4 DOWNTO 0);
+signal key : std_logic_vector (3 DOWNTO 0);
 
 begin 
 process (clk) 
@@ -49,21 +49,20 @@ process (fila,key) begin
 				when "1000" =>
 					nx_state <= s0;
 					dato <= '1';
-					key <= "00100";  -- 1 -- 4
+					data <= "00100";  -- 1 -- 4
 				when "0100" =>
 					nx_state <= s0;
 					dato <= '1';
-					key <= "01000";  -- 4 -- 8 
+					data <= "01000";  -- 4 -- 8 
 				when "0010" => 					
 					nx_state <= s0;
 					dato <= '1';
-					key <= "01100";  -- 7 -- C
+					data <= "01100";  -- 7 -- C
 				when "0001" =>
 					nx_state <= s0;
 					dato <= '1';
-					key <= "00000";  -- *  -- 0
+					data <= "00000";  -- *  -- 0
 				when others =>
-					data <= key;
 					nx_state <= s1;
 			end case;
 		when s1 =>
@@ -72,21 +71,20 @@ process (fila,key) begin
 				when "1000" =>
 					nx_state <= s1;
 					dato <= '1';
-					key <= "00011";  -- 2  -- cambio 3 
+					data <= "00011";  -- 2  -- cambio 3 
 				when "0100" =>
 					nx_state <= s1;
 					dato <= '1';
-					key <= "00111";  -- 5 -- 7
+					data <= "00111";  -- 5 -- 7
 				when "0010" => 					
 					nx_state <= s1;
 					dato <= '1';
-					key <= "01011";  -- 8 -- 11
+					data <= "01011";  -- 8 -- 11
 				when "0001" =>
 					nx_state <= s1;
 					dato <= '1';
-					key <= "01111";  --0 -- 15
+					data <= "01111";  --0 -- 15
 				when others =>
-					data <= key;
 					nx_state <= s2;
 			end case;	
 		when s2 =>
@@ -95,21 +93,20 @@ process (fila,key) begin
 				when "1000" =>
 					nx_state <= s2;
 					dato <= '1';
-					key <= "00010";  -- 3 --cambio a 2
+					data <= "00010";  -- 3 --cambio a 2
 				when "0100" =>
 					nx_state <= s2;
 					dato <= '1';
-					key <= "00110";  -- 6 --
+					data <= "00110";  -- 6 --
 				when "0010" => 					
 					nx_state <= s2;
 					dato <= '1';
-					key <= "01010";  -- 9
+					data <= "01010";  -- 9
 				when "0001" =>
 					nx_state <= s2;
 					dato <= '1';
-					key <= "01110";  -- E
+					data <= "01110";  -- E
 				when others =>
-					data <= key;
 					nx_state <= s3;
 			end case;	
 		when s3 =>
@@ -118,21 +115,20 @@ process (fila,key) begin
 				when "1000" =>
 					nx_state <= s3;
 					dato <= '1';
-					key <= "00001";  -- A --cambio a 1
+					data <= "00001";  -- A --cambio a 1
 				when "0100" =>
 					nx_state <= s3;
 					dato <= '1';
-					key <= "00101";  -- B --cambio a 5
+					data <= "00101";  -- B --cambio a 5
 				when "0010" => 					
 					nx_state <= s3;
 					dato <= '1';
-					key <= "01001";  -- C --cambio a 9
+					data <= "01001";  -- C --cambio a 9
 				when "0001" =>
 					nx_state <= s3;
 					dato <= '1';
-					key <= "01101";  --D -- cambio a 13
+					data <= "01101";  --D -- cambio a 13
 				when others =>
-					data <= key;
 					nx_state <= s0;			
 			end case;
 	end case;
